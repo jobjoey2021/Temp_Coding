@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <label for="fname">First name:</label>
+    <input type="text" id="fname" name="fname" value="工程一"><br><br>
+    <script>
+        function fnGetId() {
+            // Returns the first DIV element in the collection.
+            var oVDiv = document.getElementById("fname");
+            console.log(oVDiv);
+            var oVDiv2 = document.getElementById("fname").value;
+            console.log(oVDiv2);
+
+            TT = Date().toString();
+            const fruits = ["A", "B", "C", "D"];
+            fruits.push(TT);
+            fruits.push(oVDiv2);
+            console.log(fruits);
+        }
+        // console.log(fnGetId(oDiv1));
+    </script>
+    <DIV ID="oDiv1">Div #1</DIV>
+    <DIV ID="oDiv2">Div #2</DIV>
+    <DIV ID="oDiv3">Div #3</DIV>
+    <INPUT TYPE="button" VALUE="Get Names" onclick="fnGetId()">
+
+</body>
+
+</html>

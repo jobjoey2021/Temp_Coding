@@ -21,34 +21,12 @@
         TT = Date().toString();
         const fruits = ["A", "B", "C", "D"];
         var fname = $('#fname');
-        // fname = String(fname);//[object Object]
-        // fname = fname.toString();//[object Object]
-        var jsonObjStr = JSON.stringify(fname);//"{\"0\":{},\"length\":1,
-        // jsonObjStr =JSON.parse(fname);
-        // console.log(fname);
-        // console.log(fname);
-        // console.log(jsonObjStr);
+        var jsonObjStr = JSON.stringify(fname);
         fruits.push(TT);
         fruits.push(jsonObjStr);
         console.log(fruits);
 
-        // -----------------
-        function objToString(obj) {
-            let str = '';
-            for (const [p, val] of Object.entries(obj)) {
-                str += `${p}::${val}\n`;
-            }
-            return str;
-        }
-
-        console.log(objToString(fname));
-
-        // -------------------
-        $("input:text").change(function () {
-            var value = $("input[type=text].selector").val();
-            alert(value);
-        });
-
+        
     </script>
 
 </body>
