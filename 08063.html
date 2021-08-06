@@ -7,7 +7,7 @@
 
     <meta name="author" content="oxxo.studio">
     <meta name="copyright" content="oxxo.studio">
-    <title>hair cut record</title>
+    <title>hair cut record863</title>
     <script src="./OXXO.STUDIO_files/jquery-1.9.1.js.下載"></script>
     <style>
         input {
@@ -41,23 +41,56 @@
         <option value="top">從上寫入</option>
         <option value="bottom">寫入在最後一列</option>
     </select>
+    <!-- --------------------- -->
     <br>
     資料：
     <br>
     項目：<input id="iterm" value="Today Hair"><br>
-    日期：<input id="today" value="8/1"><br>
+    <!-- 日期：<input id="today" value="8/3"><br> -->
+    日期：<input id="today"><br>
     備註：<input id="remark" value="備註"><br>
-    <!-- <table>
-    <tbody>
-      <tr>
-        <td>今天剪髮</td>
-        <td>日期</td>
-        <td>備註</td>
-      </tr>
-    </tbody>
-  </table> -->
+
+    <button id="archange" onclick="myFunction()">改變 Array</button>
     <button id="sendBtn">寫入</button>
     <script>
+        function myFunction() {
+            var x = document.getElementById("today").value;
+            // document.getElementById("demo").innerHTML = x;
+            console.log(x);
+            var oVDiv = document.getElementById("iterm").value;
+            var oVDiv2 = document.getElementById("today").value;
+            var oVDiv3 = document.getElementById("remark").value;
+            var data1 = ['code86', TT];
+
+            data1.push(oVDiv);
+            data1.push(oVDiv2);
+            data1.push(oVDiv3);
+            var data = [data1];
+            console.log(data);
+            // ------------------------------
+            var appUrl = $('#appUrl'),
+                sheetsUrl = $('#sheetsUrl'),
+                sheetName = $('#sheetName'),
+                // iterm = $('#iterm'),
+                // today = $('#today'),
+                // remark = $('#remark'),
+                type = $('#type'),
+                sendBtn = $('#sendBtn'),
+                show = $('#show');
+            var parameter = {};
+
+            parameter = {
+                url: sheetsUrl.val(),
+                name: sheetName.val(),
+                data: data.toString(),
+                row: data.length,
+                column: data[0].length,
+                insertType: type.val()
+            };
+            $.get(appUrl.val(), parameter);
+        };
+
+
         // ----------------------------------
         // 時間轉字串，轉成yyyy-MM-dd HH:mm:SS格式
         TT = Date().toString();
@@ -77,15 +110,17 @@
         // var data = [['456','456','789']];
 
         var oVDiv = document.getElementById("iterm").value;
-        console.log(oVDiv);
         var oVDiv2 = document.getElementById("today").value;
         var oVDiv3 = document.getElementById("remark").value;
-        var data = [['今天剪髮code', TT]];
-        data.push(oVDiv);
-        data.push(oVDiv2);
-        data.push(oVDiv3);
+        var data1 = ['code86', TT];
+
+        data1.push(oVDiv);
+        data1.push(oVDiv2);
+        data1.push(oVDiv3);
+        var data = [data1];
 
         console.log(data);
+
         // ------------------
         var parameter = {};
         sendBtn.on('click', function () {
@@ -125,15 +160,14 @@
         }
     </style>
     <!-- <div id="info">相關參考：<a id="infoLink" href="https://www.oxxostudio.tw/articles/201706/google-spreadsheet-6-web-write-data.html" target="_blank">Google 試算表 (6) - 網頁寫入資料 </a></div> -->
-    <script>
+    <!-- <script>
         var href = location.href;
         var page = href.split("demo/");
         var name = page[1].split("-demo")[0];
         var title = document.querySelector('title').innerHTML;
         document.getElementById('infoLink').setAttribute('href', '/articles/' + name + '.html');
         document.getElementById('infoLink').innerHTML = title.split("demo")[0];
-    </script>
-
+    </script> -->
 
 
 </body>
