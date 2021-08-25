@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- saved from url=(0086)https://www.oxxostudio.tw/demo/201706/google-spreadsheet-6-web-write-data-demo-01.html -->
+<html lang="zh-TW">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="author" content="oxxo.studio">
+    <meta name="copyright" content="oxxo.studio">
+    <title>hair cut record863</title>
+    <script src="./OXXO.STUDIO_files/jquery-1.9.1.js.下載"></script>
+    <style>
+        input {
+            width: 300px;
+            font-size: 15px;
+            margin: 2px 0;
+            padding: 2px 5px;
+        }
+
+        td {
+            border: 1px solid #aaa;
+            padding: 2px 5px;
+        }
+    </style>
+    <!-- success 20210718 hair cut record in html 2 GDS  -->
+    <!-- wait 修改參數 -->
+</head>
+
+<body>
+    <!-- Google App Script：<input id="appUrl"><br>  -->
+    Google App Script：<input id="appUrl"
+        value="https://script.google.com/macros/s/AKfycbyr0HBBn1cVQyEPVKC7AHKKCYA061ttTiP7O7wmDvlWXcx6Zb0MkZye2MMEWXUZ0qvo/exec"><br>
+    <!-- 試算表網址：<input id="sheetsUrl"><br>  -->
+    試算表網址：<input id="sheetsUrl"
+        value="https://docs.google.com/spreadsheets/d/19NEEn2sr_w-cxpT57dZ1F_jK60BTv_lGiypE9YM7ZKw/edit#gid=0"><br>
+    <!-- 工作表名稱：<input id="sheetName"><br>  -->
+    工作表名稱：<input id="sheetName" value="hair"><br>
+
+    寫入方式：
+    <select id="type">
+        <option value="top">從上寫入</option>
+        <option value="bottom">寫入在最後一列</option>
+    </select>
+    <!-- --------------------- -->
+    <br>
+    資料：
+    <br>
+    項目：<input id="iterm" value="Today Hair"><br>
+    <!-- 日期：<input id="today" value="8/3"><br> -->
+    日期：<input id="today"><br>
+    備註：<input id="remark" value="備註"><br>
+
+    <button id="archange" onclick="myFunction()">改變 Array</button>
+    <!-- <button id="sendBtn">寫入</button> -->
+    <script>
+        function myFunction() {
+            var x = document.getElementById("today").value;
+            // console.log(x);
+            var oVDiv = document.getElementById("iterm").value;
+            var oVDiv2 = document.getElementById("today").value;
+            var oVDiv3 = document.getElementById("remark").value;
+            var data1 = ['cellPhone寫入', TT];
+
+
+
+            data1.push(oVDiv);
+            data1.push(oVDiv2);
+            data1.push(oVDiv3);
+            var data = [data1];
+            // console.log(data);
+            // ------------------------------
+            var appUrl = $('#appUrl'),
+                sheetsUrl = $('#sheetsUrl'),
+                sheetName = $('#sheetName'),
+                type = $('#type'),
+                sendBtn = $('#sendBtn'),
+                show = $('#show');
+            var parameter = {};
+
+            parameter = {
+                url: sheetsUrl.val(),
+                name: sheetName.val(),
+                data: data.toString(),
+                row: data.length,
+                column: data[0].length,
+                insertType: type.val()
+            };
+            $.get(appUrl.val(), parameter);
+        };
+
+        // 時間轉字串，轉成yyyy-MM-dd HH:mm:SS格式 - 這支 function 要放外面 joey test
+        TT = Date().toString();
+        // console.log(TT);
+        // 時間轉字串，轉成yyyy-MM-dd HH:mm:SS格式
+
+    </script>
+
+
+    <style>
+        #info {
+            position: fixed;
+            z-index: 999;
+            bottom: 20px;
+            left: 0px;
+            background: #222;
+            padding: 20px 30px;
+            color: #fff;
+            box-shadow: rgba(0, 0, 0, .5) 0 0 10px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        #info a {
+            color: #0bf;
+            transition: .2s;
+        }
+
+        #info a:hover {
+            color: #6df;
+        }
+    </style>
+
+</body>
+
+</html>
