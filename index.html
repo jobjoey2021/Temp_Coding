@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!-- saved from url=(0086)https://www.oxxostudio.tw/demo/201706/google-spreadsheet-6-web-write-data-demo-01.html -->
+<html lang="zh-TW">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="author" content="oxxo.studio">
+    <meta name="copyright" content="oxxo.studio">
+    <title>hair cut record863</title>
+    <script src="./OXXO.STUDIO_files/jquery-1.9.1.js.下載"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        input {
+            width: 300px;
+            font-size: 15px;
+            margin: 2px 0;
+            padding: 2px 5px;
+        }
+
+        td {
+            border: 1px solid #aaa;
+            padding: 2px 5px;
+        }
+    </style>
+    <!-- success 20210718 hair cut record in html 2 GDS  -->
+    <!-- wait 修改參數 -->
+</head>
+
+<body>
+
+    <!-- <div class="text-center col-12 mt-4">
+        <a href="#" class="mt-1 btn btn-lg btn-primary"><i class="fab fa-apple fa-fw"></i> 按鈕Ａ</a> -->
+
+    <button type="button" class="btn btn-primary btn-lg btn-block">Button 1</button>
+
+    <button id="archange" onclick="myFunction()">改變 Array 寫入</button>
+
+    <br>
+    資料：
+    <br>
+    項目：<input id="iterm" value="Today Hair"><br>
+    <!-- 日期：<input id="today" value="8/3"><br> -->
+    日期：<input id="today"><br>
+    備註：<input id="remark" value="備註"><br>
+
+    寫入方式：
+    <select id="type">
+        <option value="top">從上寫入</option>
+        <option value="bottom">寫入在最後一列</option>
+    </select>
+    <br>
+    <!-- Google App Script：<input id="appUrl"><br>  -->
+    Google App Script：<input id="appUrl"
+        value="https://script.google.com/macros/s/AKfycbyr0HBBn1cVQyEPVKC7AHKKCYA061ttTiP7O7wmDvlWXcx6Zb0MkZye2MMEWXUZ0qvo/exec"><br>
+    <!-- 試算表網址：<input id="sheetsUrl"><br>  -->
+    試算表網址：<input id="sheetsUrl"
+        value="https://docs.google.com/spreadsheets/d/19NEEn2sr_w-cxpT57dZ1F_jK60BTv_lGiypE9YM7ZKw/edit#gid=0"><br>
+    <!-- 工作表名稱：<input id="sheetName"><br>  -->
+    工作表名稱：<input id="sheetName" value="hair"><br>
+
+    <script>
+        function myFunction() {
+            // var x = document.getElementById("today").value;
+            // console.log(x);
+            // joey-- document.get -- 取得 html input value
+            var oVDiv = document.getElementById("iterm").value;
+            var oVDiv2 = document.getElementById("today").value;
+            var oVDiv3 = document.getElementById("remark").value;
+            var data1 = ['cellPhone寫入', TT]; //TT 時間函數要放在外面
+            // joey-- 改變 Array 用 push 加值
+            data1.push(oVDiv);
+            data1.push(oVDiv2);
+            data1.push(oVDiv3);
+            var data = [data1];
+            // console.log(data);
+            //  joey-- jq - search dom # ... (要引用 cdn)
+            var appUrl = $('#appUrl'),
+                sheetsUrl = $('#sheetsUrl'),
+                sheetName = $('#sheetName'),
+                type = $('#type'),
+                sendBtn = $('#sendBtn'),
+                show = $('#show');
+
+            //  joey-- 定義 打包 parameter - 要傳送的 資料
+            var parameter = {};
+            parameter = {
+                url: sheetsUrl.val(),
+                name: sheetName.val(),
+                data: data.toString(),
+                row: data.length,
+                column: data[0].length,
+                insertType: type.val()
+            };
+            $.get(appUrl.val(), parameter);//用 get 傳送
+        };
+
+        // 時間轉字串，轉成yyyy-MM-dd HH:mm:SS格式 - 這支 function 要放外面 joey test
+        TT = Date().toString();
+        // console.log(TT);
+        // 時間轉字串，轉成yyyy-MM-dd HH:mm:SS格式
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+
+    <style>
+        #info {
+            position: fixed;
+            z-index: 999;
+            bottom: 20px;
+            left: 0px;
+            background: #222;
+            padding: 20px 30px;
+            color: #fff;
+            box-shadow: rgba(0, 0, 0, .5) 0 0 10px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        #info a {
+            color: #0bf;
+            transition: .2s;
+        }
+
+        #info a:hover {
+            color: #6df;
+        }
+    </style>
+
+</body>
+
+</html>
